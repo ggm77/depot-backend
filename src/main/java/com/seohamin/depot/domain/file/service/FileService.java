@@ -44,7 +44,10 @@ public class FileService {
 
         // 3) 파일 저장
         for (final MultipartFile multipartFile : multipartFiles) {
-            storageIoCore.write(multipartFile, Paths.get(SAVE_PATH_STR));
+            if (multipartFile.isEmpty() || multipartFile.getOriginalFilename() == null || multipartFile.getOriginalFilename().isBlank()) {
+                continue;
+            }
+            storageIoCore.write(multipartFile, Paths.get(SAVE_PATH_STR).resolve(multipartFile.getOriginalFilename()));
         }
     }
 }

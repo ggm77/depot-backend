@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 
@@ -21,8 +20,6 @@ public class FileService {
 
     @Value("${save.dir}")
     private String SAVE_PATH_STR;
-
-    private final Path SAVE_DIR = Paths.get(SAVE_PATH_STR);
 
     private final StorageIoCore storageIoCore;
 
@@ -47,7 +44,7 @@ public class FileService {
 
         // 3) 파일 저장
         for (final MultipartFile multipartFile : multipartFiles) {
-            storageIoCore.write(multipartFile, SAVE_DIR);
+            storageIoCore.write(multipartFile, Paths.get(SAVE_PATH_STR));
         }
     }
 }

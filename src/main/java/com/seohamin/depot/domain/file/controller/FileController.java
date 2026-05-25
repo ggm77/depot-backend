@@ -3,6 +3,7 @@ package com.seohamin.depot.domain.file.controller;
 import com.seohamin.depot.domain.file.dto.FileCheckRequestDto;
 import com.seohamin.depot.domain.file.dto.FileCheckResponseDto;
 import com.seohamin.depot.domain.file.dto.FileResponseDto;
+import com.seohamin.depot.domain.file.service.FileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,13 +18,17 @@ import java.util.List;
 @RequestMapping("/api/v1")
 public class FileController {
 
+    private final FileService fileService;
+
     @PostMapping(value = "/files", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<FileResponseDto> uploadFiles(
-            @RequestPart(value = "files") final List<MultipartFile> files
+    public ResponseEntity<Void> uploadFiles(
+            @RequestParam(value = "files", required = true) final List<MultipartFile> files,
+            @RequestParam(value = "password", required = true) final String password
     ) {
 
-        // mock
-        return ResponseEntity.ok(new FileResponseDto("test.txt", 100L, Instant.now()));
+        fileService.uploadFile(files, password);
+
+        return ResponseEntity.noContent().build();
     }
 
     @PostMapping("/file/check")

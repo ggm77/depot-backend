@@ -2,8 +2,6 @@ package com.seohamin.depot.global.infra.storage;
 
 import com.seohamin.depot.global.exception.CustomException;
 import com.seohamin.depot.global.exception.constants.ExceptionCode;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 

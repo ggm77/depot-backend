@@ -1,6 +1,5 @@
 package com.seohamin.depot.domain.file.service;
 
-import com.seohamin.depot.domain.file.dto.FileResponseDto;
 import com.seohamin.depot.global.exception.CustomException;
 import com.seohamin.depot.global.exception.constants.ExceptionCode;
 import com.seohamin.depot.global.infra.storage.StorageIoCore;
